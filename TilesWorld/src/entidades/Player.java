@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 
 import mainGame.GamePanel;
 
-public class Player extends Entity{
+public class Player extends MovingEntity{
 
 	private float dx;// posicao da direcao currentX
 	private float dy;// posicao da direcao currentY
@@ -21,8 +21,8 @@ public class Player extends Entity{
 	private boolean caindo;
 	private boolean correndo;
 	
-	private float defaultVelocity = 11.8f;
-	private float maxVelocity = 25.9f;
+	private float defaultspeed = 11.8f;
+	private float maxspeed = 25.9f;
 
 	private Graphics2D g2d;
 
@@ -42,14 +42,14 @@ public class Player extends Entity{
 
 	public void calcMovimento() {
 		if(correndo)
-			if(velocity < maxVelocity)
-				velocity *= 1.5;
+			if(speed < maxspeed)
+				speed *= 1.5;
 			else
-				velocity = maxVelocity;
+				speed = maxspeed;
 		else
-			velocity = defaultVelocity;
+			speed = defaultspeed;
 		if (direita) {
-			dx = currentX + velocity;
+			dx = currentX + speed;
 			if(dx > maxX){
 				dx = maxX;
 			}
@@ -57,7 +57,7 @@ public class Player extends Entity{
 			direita = false;
 		}
 		if (esquerda) {
-			dx = currentX - velocity;
+			dx = currentX - speed;
 			if(dx < minX){
 				dx = minX;
 			}
@@ -65,7 +65,7 @@ public class Player extends Entity{
 			esquerda = false;
 		}
 		if (pulando) {
-			dy = currentY - velocity;
+			dy = currentY - speed;
 			if(dy < minY){
 				dy = minY;
 			}
@@ -73,7 +73,7 @@ public class Player extends Entity{
 			pulando = false;			
 		}
 		if (caindo) {
-			dy = currentY + velocity;
+			dy = currentY + speed;
 			if(dy > maxY){
 				dy = maxY;
 			}

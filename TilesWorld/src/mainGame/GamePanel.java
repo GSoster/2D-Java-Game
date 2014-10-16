@@ -8,8 +8,9 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 import map.TileMap;
-import entidades.Player;
 import ui.BasicUi;
+import entidades.Player;
+import entidades.PlayerEntity;
 
 public class GamePanel extends JPanel implements KeyListener {
 
@@ -24,7 +25,8 @@ public class GamePanel extends JPanel implements KeyListener {
 
 	private Graphics2D g2d;
 	private TileMap map;
-	private Player player;
+	//private Player player;
+	private PlayerEntity playerEntity;	
 	private BasicUi basicUi;
 
 	private long startTime;
@@ -36,7 +38,8 @@ public class GamePanel extends JPanel implements KeyListener {
 	public GamePanel() {
 		super();
 		this.map = new TileMap(GAME_WIDTH, GAME_HEIGHT, TILE_SIZE);
-		this.player = new Player();
+		//this.player = new Player();
+		this.playerEntity = new PlayerEntity();
 		this.basicUi = new BasicUi();
 		setFocusable(true);
 		requestFocus();
@@ -44,13 +47,14 @@ public class GamePanel extends JPanel implements KeyListener {
 	}
 
 	public void update() {
-		player.update();
-		// map.setPlayerPosition(player.getPlayerX(), player.getPlayerY());
+		//player.update();
+		playerEntity.update();
 	}
 
 	public void draw(Graphics2D g) {
 		this.map.draw(g);
-		this.player.draw(g);
+		//this.player.draw(g);
+		this.playerEntity.draw(g);
 		// this.basicUi.draw(g);
 	}
 
@@ -78,19 +82,19 @@ public class GamePanel extends JPanel implements KeyListener {
 		int code = e.getKeyCode();
 		// calcular andando p/direita
 		if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT)
-			player.setDireita(true);
+			playerEntity.setGoingRight(true);//player.setDireita(true);
 		if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT)
-			player.setEsquerda(true);
+			playerEntity.setGoingLeft(true);//player.setEsquerda(true);
 		if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP)
-			player.setPulando(true);
+			playerEntity.setJumping(true);//player.setPulando(true);
 		if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN)
-			player.setCaindo(true);
+			playerEntity.setFalling(true);//player.setCaindo(true);
 		if (code == KeyEvent.VK_SHIFT) {
-			player.setCorrendo(true);
+			playerEntity.setRunning(true);//player.setCorrendo(true);
 			basicUi.setShift(true);
 		}
 		if (code == KeyEvent.VK_SPACE) {
-			player.setPulando(true);
+			//player.setPulando(true);
 		}
 
 		// Debug
@@ -110,10 +114,12 @@ public class GamePanel extends JPanel implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		int code = e.getKeyCode();
 		if (code == KeyEvent.VK_SHIFT){
-			player.setCorrendo(false);
+			//player.setCorrendo(false);
+			playerEntity.setRunning(false);
 		}
 		if(code == KeyEvent.VK_SPACE){
-			player.setPulando(false);
+			//player.setPulando(false);
+			playerEntity.setJumping(false);
 		}
 		basicUi.setShift(false);
 		

@@ -1,21 +1,8 @@
 package entidades;
 
-import java.util.ArrayList;
+public class Entity {
 
-import components.GameComponent;
-public class Entity extends MovingEntity{
 
-	
-	/**
-	 * 
-	 * ########### ATENÇÃO ##########
-	 * ESSA CLASSE DEVE SER EXCLUIDA !
-	 * ATUALMENTE SERVE APENAS PARA O PLAYER NAO FICAR COM ERRO!
-	 * 
-	 */
-		
-	protected ArrayList<GameComponent> components;  
-		
-	
+
 
 }

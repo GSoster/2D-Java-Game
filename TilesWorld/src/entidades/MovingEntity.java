@@ -1,20 +1,30 @@
 package entidades;
 
 import java.awt.Graphics;
-public class MovingEntity extends AbstractEntity{
 
-	
-	protected float velocity;
+public abstract class MovingEntity extends AbstractEntity {
+
+	protected float speed;
+	protected float defaultSpeed;
+	protected float maxSpeed;
+	protected float minSpeed;
 	protected float gravity;
-	
-	public float getVelocity(){
-		return velocity;
+
+	public float getSpeed() {
+		return speed;
 	}
-	public float getGravity(){
+
+	public float getGravity() {
 		return gravity;
 	}
-	
-	public void update(){}
-	
-	public void draw(Graphics g){}
+
+	public float getMaxSpeed() {
+		return maxSpeed;
+	}
+
+	public float getMinSpeed() {
+		return minSpeed;
+	}
+
+
 }
